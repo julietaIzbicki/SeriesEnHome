@@ -15,8 +15,28 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewBag.Actores = BD.ObtenerActores();
+        ViewBag.Series = BD.ObtenerSeries();
+        ViewBag.Temporadas = BD.ObtenerTemporadas();
         return View();
     }
+/*
+    public Series traerSeries()
+    {
+        
+         
+    }
+
+    public Series traerTemporadas()
+    {
+         
+    }
+
+    public Series traerActores()
+    {
+         
+    }
+*/
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
