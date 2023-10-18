@@ -14,4 +14,6 @@ public class Series
         Sinopsis = sinopsis;
         ImagenSerie = imagenSerie;
     }
+
+    public Series() { }
 }

@@ -1,44 +1,56 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
-
 // Write your JavaScript code.
 
 function masInformacion(id)
 {
-    $.Ajax({
-        url: '/Home/Index',
+    $.ajax({
+        url: '/Home/traerInfo',
         type : 'GET',
+        data: {id},
         dataType: 'json',
 
         success : function(Serie){
-            $("#nombreS").html(Serie.nombre)
-        }
+            let inf;
+            $("#texto_informacion").html(act);        }
     });
 }
 
 function Actores(id)
 {
-    $.Ajax({
-        url: '/Home/Index',
+    $.ajax({
+        url: '/Home/traerActores',
         type : 'GET',
+        data: {id},
         dataType: 'json',
 
-        success : function(Serie){
-            $("#nombreS").html(Serie.nombre)
+        success: function(Actores) {
+            let act = "";
+            Actores.forEach(a => {
+                
+                act += "<b>" + a.nombre + "</b>";
+                
+            });
+            console.log(act);
+            $("#texto_informacion").html(act);
         }
     });
 }
 
 function Temporadas(id)
 {
-    $.Ajax({
-        url: '/Home/Index',
+    $.ajax({
+        url: '/Home/traerTemporadas',
         type : 'GET',
+        data: {id},
         dataType: 'json',
 
-        success : function(Serie){
-            $("#nombreS").html(Serie.nombre)
+        success : function(Temporadas){
+            let temp = "";
+            Temporadas.forEach(t => {
+                temp += "<b>" + t.nombre + "</b>";
+            });
+            $("#texto_informacion").html(temp);        
         }
     });
 }
-

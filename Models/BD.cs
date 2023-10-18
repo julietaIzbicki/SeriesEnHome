@@ -4,39 +4,49 @@ using Dapper;
 public static class BD
 {
     public static string _connectionString = @"Server=LOCALHOST;
-    Database=Login;Trusted_Connection=True;";
+    Database=BDSeries;Trusted_Connection=True;";
 
-    public static Series ObtenerSeries()
+    public static List<Series> ObtenerSeries()
     {
-        Series series = null ;
+        List<Series> series = new List<Series>();
         string sql = "SELECT * FROM Series";
         using (SqlConnection BD = new SqlConnection(_connectionString))
         {
-            series = BD.QueryFirstOrDefault<Series>(sql);
+            series = BD.Query<Series>(sql).ToList();
         }
         return series;
     }
 
-    public static Actores ObtenerActores()
+    public static List<Actores> ObtenerActores(int id)
     {
-        Actores actores = null ;
-        string sql = "SELECT * FROM Actores";
+        List<Actores> actores = new List<Actores>();
+        string sql = "SELECT * FROM Actores WHERE IdSerie = @id";
         using (SqlConnection BD = new SqlConnection(_connectionString))
         {
-            actores = BD.QueryFirstOrDefault<Actores>(sql);
+            actores = BD.Query<Actores>(sql, new { id }).ToList();
         }
         return actores;
     }
 
-    public static Temporadas ObtenerTemporadas()
+    public static List<Temporadas> ObtenerTemporadas(int id)
     {
-        Temporadas temporadas = null ;
-        string sql = "SELECT * FROM Temporadas";
+        List<Temporadas> temporadas = new List<Temporadas>();
+        string sql = "SELECT * FROM Temporadas WHERE IdSerie = @id";
         using (SqlConnection BD = new SqlConnection(_connectionString))
         {
-            temporadas = BD.QueryFirstOrDefault<Temporadas>(sql);
+            temporadas = BD.Query<Temporadas>(sql, new { id }).ToList();
         }
         return temporadas;
     }
 
+    public static Series ObtenerSerie(int id)
+    {
+        Series serie = null;
+        string sql = "SELECT * FROM Series WHERE IdSerie = @id";
+        using (SqlConnection BD = new SqlConnection(_connectionString))
+        {
+            serie = BD.QueryFirstOrDefault<Series>(sql, new { id });
+        }
+        return serie;
+    }
 }

@@ -12,4 +12,6 @@ public class Temporadas
         NumeroTemporada = numeroTemporada;
         TituloTemporada = tituloTemporada;
     }
+
+    public Temporadas() { }
 }

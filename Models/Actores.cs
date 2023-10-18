@@ -10,4 +10,6 @@ public class Actores
         IdSerie = idSerie;
         Nombre = nombre;
     }
+
+    public Actores() { }
 }

@@ -15,28 +15,26 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.Actores = BD.ObtenerActores();
+        
         ViewBag.Series = BD.ObtenerSeries();
-        ViewBag.Temporadas = BD.ObtenerTemporadas();
         return View();
     }
-/*
-    public Series traerSeries()
+
+    public List<Temporadas> traerTemporadas(int id)
     {
-        
-         
+        return BD.ObtenerTemporadas(id);
     }
 
-    public Series traerTemporadas()
+    public List<Actores> traerActores(int id)
     {
-         
+        return BD.ObtenerActores(id);
     }
 
-    public Series traerActores()
+    public string traerInfo(int id)
     {
-         
+        Series info = BD.ObtenerSerie(id);
+        return info.Sinopsis;
     }
-*/
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
