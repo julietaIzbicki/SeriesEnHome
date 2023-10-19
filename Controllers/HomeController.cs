@@ -30,10 +30,9 @@ public class HomeController : Controller
         return BD.ObtenerActores(id);
     }
 
-    public string traerInfo(int id)
+    public List<Series> traerInfo(int id)
     {
-        Series info = BD.ObtenerSerie(id);
-        return info.Sinopsis;
+        return BD.ObtenerSerie(id);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

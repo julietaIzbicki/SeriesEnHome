@@ -10,9 +10,17 @@ function masInformacion(id)
         data: {id},
         dataType: 'json',
 
-        success : function(Serie){
-            let inf;
-            $("#texto_informacion").html(act);        }
+        success: function(masInformacion) {
+            console.log(masInformacion);
+            $("#modalTittle").html("Mas informacion de la serie");
+            let inf = "";
+            masInformacion.forEach(s => {
+                
+                inf += "<p>" + s.sinopsis + "</p>" + "<p>" + s.anoInicio + "</p>";
+            });
+
+            $("#texto_informacion").html(inf);
+        }
     });
 }
 
@@ -28,11 +36,11 @@ function Actores(id)
             let act = "";
             Actores.forEach(a => {
                 
-                act += "<b>" + a.nombre + "</b>";
+                act += "<p>" + a.nombre + "</p>";
                 
             });
-            console.log(act);
             $("#texto_informacion").html(act);
+            $("#modalTittle").html("Actores de la serie");
         }
     });
 }
@@ -48,9 +56,10 @@ function Temporadas(id)
         success : function(Temporadas){
             let temp = "";
             Temporadas.forEach(t => {
-                temp += "<b>" + t.nombre + "</b>";
+                temp += "<p>" + t.tituloTemporada + "</p>";
             });
-            $("#texto_informacion").html(temp);        
+            $("#texto_informacion").html(temp);   
+            $("#modalTittle").html("Temporadas de la serie");     
         }
     });
 }

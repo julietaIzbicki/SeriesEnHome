@@ -39,13 +39,13 @@ public static class BD
         return temporadas;
     }
 
-    public static Series ObtenerSerie(int id)
+    public static List<Series> ObtenerSerie(int id)
     {
-        Series serie = null;
+        List<Series> serie = new List<Series>();
         string sql = "SELECT * FROM Series WHERE IdSerie = @id";
         using (SqlConnection BD = new SqlConnection(_connectionString))
         {
-            serie = BD.QueryFirstOrDefault<Series>(sql, new { id });
+            serie = BD.Query<Series>(sql, new { id }).ToList();
         }
         return serie;
     }
